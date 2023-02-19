@@ -12,9 +12,11 @@
 import type { ApiFromModules } from "convex/api";
 import type * as getGameBySlug from "../getGameBySlug";
 import type * as joinGame from "../joinGame";
+import type * as lost from "../lost";
 import type * as newGame from "../newGame";
 import type * as setName from "../setName";
 import type * as startGame from "../startGame";
+import type * as util_util from "../util/util";
 
 /**
  * A type describing your app's public Convex API.
@@ -28,7 +30,9 @@ import type * as startGame from "../startGame";
 export type API = ApiFromModules<{
   getGameBySlug: typeof getGameBySlug;
   joinGame: typeof joinGame;
+  lost: typeof lost;
   newGame: typeof newGame;
   setName: typeof setName;
   startGame: typeof startGame;
+  "util/util": typeof util_util;
 }>;

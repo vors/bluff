@@ -35,6 +35,7 @@ const Game = ({ slug }: Props) => {
     const setName = useMutation("setName");
     const game = useQuery("getGameBySlug", slug || null) || null;
     const joinGame = useMutation("joinGame");
+    const lost = useMutation("lost");
     useEffect(() => {
         if (typeof window === "undefined") {
             console.log("we are running on the server");
@@ -58,8 +59,14 @@ const Game = ({ slug }: Props) => {
     }
 
     const canChangeName = game && game.players.has(userId) && game.state == "created";
-    const showStartGameButton = game && game.players.size > 1 && game.state == "created";
+    // const showStartGameButton = game && game.players.size > 1 && game.state == "created";
+    const showStartGameButton = true;
     const gameStarted = game && game.state == "started";
+
+    async function handleLost(e: MouseEvent<HTMLElement>, player: number) {
+        e.preventDefault();
+        await lost(game._id, player);
+    }
 
     return (
         <div>
@@ -77,7 +84,36 @@ const Game = ({ slug }: Props) => {
                         />
                     </div>
 
-                    <Players players={game.players} me={userId} owner={game.owner} />
+                    <div>
+                        <div>Players:</div>
+                        <ul>
+                            {game.players &&
+                                Array.from(game.players, ([id, name]) => ({
+                                    id,
+                                    name,
+                                })).map(({ id, name }) => {
+                                    const isMe = id == userId;
+                                    const lost = !game.cards.get(id);
+                                    return (
+                                        <li key={id.toString()}>
+                                            {id == userId ? "👤" : ""}
+                                            {id == game.owner ? "👑" : ""}
+                                            {name} ---{" "}
+                                            {gameStarted &&
+                                                !lost &&
+                                                JSON.stringify(
+                                                    isMe
+                                                        ? game.cards.get(id)
+                                                        : Array(game.cards.get(id).length).fill("xx")
+                                                )}
+                                            {gameStarted && userId == game.owner && !lost && (
+                                                <Button onClick={(e) => handleLost(e, id)}>Lost</Button>
+                                            )}
+                                        </li>
+                                    );
+                                })}
+                        </ul>
+                    </div>
 
                     {game && userId == game.owner && (
                         <div>
@@ -86,8 +122,6 @@ const Game = ({ slug }: Props) => {
                             </Button>
                         </div>
                     )}
-
-                    {gameStarted && <div>GAME IS ON</div>}
                 </div>
             )}
         </div>
