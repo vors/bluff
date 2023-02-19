@@ -58,8 +58,7 @@ const Game = ({ slug }: Props) => {
     }
 
     const canChangeName = game && game.players.has(userId) && game.state == "created";
-    // const showStartGameButton = game && game.players.size > 1 && game.state == "created";
-    const showStartGameButton = true;
+    const showStartGameButton = game && game.players.size > 1 && game.state == "created";
     const gameStarted = game && game.state == "started";
 
     async function handleLost(e: MouseEvent<HTMLElement>, player: number) {
