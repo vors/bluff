@@ -1,47 +1,34 @@
-# TypeScript Next.js example
+# Bluff
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+A simple implementation of game [Bluff](https://docs.google.com/presentation/d/10UGca0ijlXIk6Z8Rq39Llxjc96VLkaiQPICAeDnsSbc/edit#slide=id.p).
 
-## Deploy your own
+Game is available on https://bluff-three.vercel.app/
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript)
+## Development
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+One-time setup
 
-## How to use it?
+```
+npm i
+npx convex init
+```
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Run frontend and backend
 
 ```bash
-npx create-next-app --example with-typescript with-typescript-app
+# in one tab
+npm run dev
 ```
 
 ```bash
-yarn create next-app --example with-typescript with-typescript-app
+# in another tab
+npx convex dev
 ```
 
-```bash
-pnpm create next-app --example with-typescript with-typescript-app
-```
+The website is now accessible at [http://localhost:3000](http://localhost:3000).
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+We use Convex to host the database. "Convex functions" read and write data from/to the database. These functions are written in TypeScript and deployed to Convex.
 
-## Notes
+Getting started with Convex: https://docs.convex.dev/tutorial/welcome-to-convex
 
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```
-npm install --save-dev typescript
-```
-
-To enable TypeScript's features, we install the type declarations for React and Node.
-
-```
-npm install --save-dev @types/react @types/react-dom @types/node
-```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+Run local "background" server, which listens to file changes and re-deploys the Convex functions:
