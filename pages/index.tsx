@@ -20,7 +20,7 @@ const IndexPage = () => {
             <p>
                 <ul>
                     <li>
-                        You need to have communicate with your friends through some other means (like a voice call in
+                        You need to communicate with your friends through some other means (like a voice call in
                         Discord).
                     </li>
                     <li>
