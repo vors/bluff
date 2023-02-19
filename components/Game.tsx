@@ -2,7 +2,6 @@ import React, { useState, useEffect, MouseEvent } from "react";
 import { Button, Col, Form, Row, Collapse } from "react-bootstrap";
 import { ListGroup } from "react-bootstrap";
 import { useQuery, useMutation } from "../convex/_generated/react";
-import Players from "./Players";
 
 type Props = {
     slug: string;
