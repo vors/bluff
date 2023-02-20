@@ -15,11 +15,13 @@ npx convex init
 
 ## Run frontend and backend
 
+Run frontend nextjs code:
 ```bash
 # in one tab
 npm run dev
 ```
 
+Run local "background" server, which listens to file changes and re-deploys the Convex functions:
 ```bash
 # in another tab
 npx convex dev
@@ -31,4 +33,3 @@ We use Convex to host the database. "Convex functions" read and write data from/
 
 Getting started with Convex: https://docs.convex.dev/tutorial/welcome-to-convex
 
-Run local "background" server, which listens to file changes and re-deploys the Convex functions:
