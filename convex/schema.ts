@@ -5,7 +5,7 @@ export default defineSchema({
         owner: s.number(),
         slug: s.string(),
         players: s.map(s.number(), s.string()),
-        // created, started, opencards, finished
+        // created, started, openhands, finished
         state: s.string(),
         // cards is a map from playerId to their hand. Each card is represented as a string
         cards: s.map(s.number(), s.array(s.string())),

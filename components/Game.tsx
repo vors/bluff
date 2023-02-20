@@ -61,6 +61,7 @@ const Game = ({ slug }: Props) => {
     const canChangeName = game && game.players.has(userId) && game.state == "created";
     const showStartGameButton = game && game.players.size > 1 && game.state == "created";
     const gameStarted = game && (game.state == "started" || game.state == "openhands");
+    const gameFinished = game && game.state == "finished";
 
     async function handleLost(e: MouseEvent<HTMLElement>, player: number) {
         e.preventDefault();
@@ -83,7 +84,8 @@ const Game = ({ slug }: Props) => {
                         />
                     </div>
                     <div>
-                        {/* uncomment for debug {game && <div>{JSON.stringify(game)}</div>} */}
+                        {/* uncomment to debug */}
+                        {/* {game && <div>{JSON.stringify(game)}</div>} */}
                         <div>Players:</div>
                         <ul>
                             {game.players &&
@@ -111,6 +113,7 @@ const Game = ({ slug }: Props) => {
                                                 game.state == "openhands" && (
                                                     <Button onClick={(e) => handleLost(e, id)}>Lost</Button>
                                                 )}
+                                            {gameFinished && <b>{game.cards.get(id) && " WINNER"}</b>}
                                         </li>
                                     );
                                 })}

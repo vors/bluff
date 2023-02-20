@@ -13,6 +13,9 @@ export default mutation(async ({ db }, id: Id<"games">, playerLost: number) => {
         if (!oldCards || (oldCards!.length == 5 && player == playerLost)) {
             game.players.delete(player);
             game.cards.delete(player);
+            if (game.cards.size == 1) {
+                await db.patch(id, { state: "finished" });
+            }
             continue;
         }
         // deal k+1 cards to the player who lost
