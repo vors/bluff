@@ -10,7 +10,7 @@ export default mutation(async ({ db }, id: Id<"games">, playerLost: number) => {
     for (const player of game.players.keys()) {
         // check do we need to drop this player from the game
         const oldCards = game.cards.get(player);
-        if (!oldCards || oldCards!.length == 5) {
+        if (!oldCards || (oldCards!.length == 5 && player == playerLost)) {
             game.players.delete(player);
             game.cards.delete(player);
             continue;

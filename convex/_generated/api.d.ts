@@ -14,6 +14,7 @@ import type * as getGameBySlug from "../getGameBySlug";
 import type * as joinGame from "../joinGame";
 import type * as lost from "../lost";
 import type * as newGame from "../newGame";
+import type * as openHands from "../openHands";
 import type * as setName from "../setName";
 import type * as startGame from "../startGame";
 import type * as util_util from "../util/util";
@@ -32,6 +33,7 @@ export type API = ApiFromModules<{
   joinGame: typeof joinGame;
   lost: typeof lost;
   newGame: typeof newGame;
+  openHands: typeof openHands;
   setName: typeof setName;
   startGame: typeof startGame;
   "util/util": typeof util_util;
