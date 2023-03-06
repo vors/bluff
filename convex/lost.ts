@@ -28,6 +28,6 @@ export default mutation(async ({ db }, id: Id<"games">, playerLost: number) => {
         }
         cards.set(player, playerCards);
     }
-    await db.patch(id, { cards });
+    await db.patch(id, { cards, closedDeck: deck, openDeck: null });
     return cards;
 });

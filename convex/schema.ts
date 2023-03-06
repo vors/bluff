@@ -9,5 +9,9 @@ export default defineSchema({
         state: s.string(),
         // cards is a map from playerId to their hand. Each card is represented as a string
         cards: s.map(s.number(), s.array(s.string())),
+        // cards in the deck
+        closedDeck: s.union(s.null(), s.array(s.string())),
+        // cards that we draw from the deck to see who lost
+        openDeck: s.union(s.null(), s.array(s.string())),
     }).index("by_slug", ["slug"]),
 });

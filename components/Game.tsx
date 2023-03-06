@@ -52,6 +52,7 @@ const Game = ({ slug }: Props) => {
     };
 
     const startGame = useMutation("startGame");
+    const openCardFromDeck = useMutation("openCardFromDeck");
 
     async function handleStartGame(e: MouseEvent<HTMLElement>) {
         e.preventDefault();
@@ -66,6 +67,11 @@ const Game = ({ slug }: Props) => {
     async function handleLost(e: MouseEvent<HTMLElement>, player: number) {
         e.preventDefault();
         await lost(game._id, player);
+    }
+
+    async function handleShowOneMoreCard(e: MouseEvent<HTMLElement>) {
+        e.preventDefault();
+        await openCardFromDeck(game._id);
     }
 
     return (
@@ -118,8 +124,15 @@ const Game = ({ slug }: Props) => {
                                     );
                                 })}
                         </ul>
+                        <div>
+                            <p>Open from deck:</p>
+                            {game.openDeck && JSON.stringify(game.openDeck)}
+                        </div>
                         {gameStarted && userId == game.owner && (
                             <Button onClick={(e) => openHands(game._id)}>Open Hands</Button>
+                        )}
+                        {gameStarted && userId == game.owner && game.state == "openhands" && (
+                            <Button onClick={(e) => handleShowOneMoreCard(e)}>Show one more card from the deck</Button>
                         )}
                     </div>
 

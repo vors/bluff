@@ -11,6 +11,6 @@ export default mutation(async ({ db }, id: Id<"games">) => {
         const card = deck.pop()!;
         cards.set(player, [card]);
     }
-    await db.patch(id, { cards });
+    await db.patch(id, { closedDeck: deck, openDeck: null, cards });
     return cards;
 });
