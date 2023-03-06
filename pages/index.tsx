@@ -17,7 +17,7 @@ const IndexPage = () => {
 
     return (
         <Layout title="Bluff">
-            <p>
+            <div>
                 <ul>
                     <li>
                         You need to communicate with your friends through some other means (like a voice call in
@@ -38,7 +38,7 @@ const IndexPage = () => {
                     </a>
                 </div>
                 <Button onClick={(e) => createGame(e)}>New game</Button>
-            </p>
+            </div>
         </Layout>
     );
 };
